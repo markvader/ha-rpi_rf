@@ -8,16 +8,6 @@ The `rpi_rf` switch platform allows you to control devices over 433/315MHz LPD/S
 Interoperable with codes sniffed via [the rpi-rf module](https://pypi.python.org/pypi/rpi-rf) or [rc-switch](https://github.com/sui77/rc-switch).
 For more info see the PyPi module description: [rpi-rf](https://pypi.python.org/pypi/rpi-rf).
 
-# Installation
-
-### HACS
-
-The recommend way to install `rpi_rf` is through [HACS](https://hacs.xyz/).
-
-### Manual installation
-
-Copy the `rpi_rf` folder and all of its contents into your Home Assistant's `custom_components` folder. This folder is usually inside your `/config` folder. If you are running Hass.io, use SAMBA to copy the folder over. You may need to create the `custom_components` folder and then copy the `rpi_rf` folder and all of its contents into it.
-
 ## Configuration
 
 To enable, add the following to your `configuration.yaml`:

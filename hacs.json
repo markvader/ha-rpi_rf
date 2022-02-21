@@ -1,0 +1,6 @@
+{
+    "name": "Raspberry Pi RF",
+    "domains": ["switch"],
+    "iot_class": "Assumed State",
+    "homeassistant": "2022.2.0"
+  }
