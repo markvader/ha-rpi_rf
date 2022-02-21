@@ -20,6 +20,5 @@ jobs:
         uses: "hacs/action@main"
         with:
           category: "integration"
-          # When RPI_GPIO brand icons merged https://github.com/home-assistant/brands/pull/3132 this integration (RPI_RF)
-          # will need a pull request for a Symbolic Link to that one (RPI_GPIO)
+          # Brand icons pull request made, will probably not be merged until core integration is depreciated in 2022.4  https://github.com/home-assistant/brands/pull/3175 
           ignore: "brands"
