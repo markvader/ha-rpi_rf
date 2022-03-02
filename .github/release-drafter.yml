@@ -12,7 +12,11 @@ categories:
       - 'bugfix'
       - 'bug'
   - title: '🧰 Maintenance'
-    label: 'chore'
+    labels:
+      - 'maintenance'
+      - 'dependencies'
+      - 'documentation'
+      - 'github_actions'
 template: |
   ## What’s Changed
 
