@@ -55,4 +55,4 @@ switch:
 | `protocol`           | no       |  `1`    | integer | RF Protocol.                                                                                                                  |
 | `pulselength`        | no       |         | integer | Pulselength.                                                                                                                  |
 | `signal_repetitions` | no       |  `10`   | integer | Number of times to repeat transmission.                                                                                       |
-| 'length'.            | no       |  `24`   | integer | Code Length |
+| `length`             | no       |  `24`   | integer | Code Length |
