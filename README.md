@@ -35,6 +35,7 @@ switch:
         pulselength: 200
         code_on: 987654
         code_off: 133742
+        length: 24
       living_room_light:
         protocol: 5
         code_on: 654321,565874,233555,149874
@@ -54,3 +55,4 @@ switch:
 | `protocol`           | no       |  `1`    | integer | RF Protocol.                                                                                                                  |
 | `pulselength`        | no       |         | integer | Pulselength.                                                                                                                  |
 | `signal_repetitions` | no       |  `10`   | integer | Number of times to repeat transmission.                                                                                       |
+| 'length'.            | no       |  `24`   | integer | Code Length |
