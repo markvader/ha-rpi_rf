@@ -141,12 +141,12 @@ class RPiRFSwitch(SwitchEntity):
 
     def turn_on(self, **kwargs):
         """Turn the switch on."""
-        if self._send_code(self._code_on, self._protocol, self._pulselength):
+        if self._send_code(self._code_on, self._protocol, self._pulselength, self._length):
             self._state = True
             self.schedule_update_ha_state()
 
     def turn_off(self, **kwargs):
         """Turn the switch off."""
-        if self._send_code(self._code_off, self._protocol, self._pulselength, self_length):
+        if self._send_code(self._code_off, self._protocol, self._pulselength, self._length):
             self._state = False
             self.schedule_update_ha_state()
