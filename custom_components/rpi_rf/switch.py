@@ -26,19 +26,20 @@ CONF_CODE_ON = "code_on"
 CONF_GPIO = "gpio"
 CONF_PULSELENGTH = "pulselength"
 CONF_SIGNAL_REPETITIONS = "signal_repetitions"
+CONF_LENGTH = "length"
 
 DEFAULT_PROTOCOL = 1
 DEFAULT_SIGNAL_REPETITIONS = 10
+DEFAULT_LENGTH = 24
 
 SWITCH_SCHEMA = vol.Schema(
     {
         vol.Required(CONF_CODE_OFF): vol.All(cv.ensure_list_csv, [cv.positive_int]),
         vol.Required(CONF_CODE_ON): vol.All(cv.ensure_list_csv, [cv.positive_int]),
         vol.Optional(CONF_PULSELENGTH): cv.positive_int,
-        vol.Optional(
-            CONF_SIGNAL_REPETITIONS, default=DEFAULT_SIGNAL_REPETITIONS
-        ): cv.positive_int,
+        vol.Optional(CONF_SIGNAL_REPETITIONS, default=DEFAULT_SIGNAL_REPETITIONS): cv.positive_int,
         vol.Optional(CONF_PROTOCOL, default=DEFAULT_PROTOCOL): cv.positive_int,
+        vol.Optional(CONF_LENGTH, default=DEFAULT_LENGTH): cv.positive_int,
     }
 )
 
@@ -73,6 +74,7 @@ def setup_platform(
                 rfdevice,
                 rfdevice_lock,
                 properties.get(CONF_PROTOCOL),
+                properties.get(CONF_LENGTH),
                 properties.get(CONF_PULSELENGTH),
                 properties.get(CONF_SIGNAL_REPETITIONS),
                 properties.get(CONF_CODE_ON),
@@ -97,6 +99,7 @@ class RPiRFSwitch(SwitchEntity):
         lock,
         protocol,
         pulselength,
+        length,
         signal_repetitions,
         code_on,
         code_off,
@@ -108,6 +111,7 @@ class RPiRFSwitch(SwitchEntity):
         self._lock = lock
         self._protocol = protocol
         self._pulselength = pulselength
+        self._length = length
         self._code_on = code_on
         self._code_off = code_off
         self._rfdevice.tx_repeat = signal_repetitions
@@ -127,12 +131,12 @@ class RPiRFSwitch(SwitchEntity):
         """Return true if device is on."""
         return self._state
 
-    def _send_code(self, code_list, protocol, pulselength):
+    def _send_code(self, code_list, protocol, pulselength, length):
         """Send the code(s) with a specified pulselength."""
         with self._lock:
             _LOGGER.info("Sending code(s): %s", code_list)
             for code in code_list:
-                self._rfdevice.tx_code(code, protocol, pulselength)
+                self._rfdevice.tx_code(code, protocol, pulselength, length)
         return True
 
     def turn_on(self, **kwargs):
@@ -143,6 +147,6 @@ class RPiRFSwitch(SwitchEntity):
 
     def turn_off(self, **kwargs):
         """Turn the switch off."""
-        if self._send_code(self._code_off, self._protocol, self._pulselength):
+        if self._send_code(self._code_off, self._protocol, self._pulselength, self_length):
             self._state = False
             self.schedule_update_ha_state()
