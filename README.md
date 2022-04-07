@@ -1,6 +1,6 @@
 # Home Assistant Raspberry Pi RF custom integration
 
-**This is a spin-off from the original Home Assistant integration which was marked as deprecated and will be removed in Home Assistant Core 2022.4.**
+**This is a spin-off from the original Home Assistant integration which was deprecated and was removed in Home Assistant Core v2022.4.**
 
 ## About
 The `rpi_rf` switch platform allows you to control devices over 433/315MHz LPD/SRD signals with generic low-cost GPIO RF modules on a [Raspberry Pi](https://www.raspberrypi.org/).
