@@ -1,0 +1,7 @@
+# Gitignore settings for ha-rpi_rf
+
+# Ignored files
+testing.py
+
+# Ignored Folders
+.venv/
