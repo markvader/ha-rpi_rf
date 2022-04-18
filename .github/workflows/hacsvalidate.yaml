@@ -20,5 +20,3 @@ jobs:
         uses: "hacs/action@main"
         with:
           category: "integration"
-          # Brand icons pull request made, will probably not be merged until core integration is depreciated in 2022.4  https://github.com/home-assistant/brands/pull/3175 
-          ignore: "brands"
