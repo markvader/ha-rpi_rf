@@ -6,5 +6,5 @@
     "requirements": ["rpi-rf==0.9.7", "RPi.GPIO==0.7.1a4"],
     "codeowners": ["@markvader"],
     "iot_class": "assumed_state",
-    "version": "2022.4.1"
+    "version": "2022.6.0"
   }
