@@ -12,7 +12,7 @@ For more info see the PyPi module description: [rpi-rf](https://pypi.python.org/
 
 ### HACS
 
-The recommend way to install `rpi_rf` is through [HACS](https://hacs.xyz/).
+The recommended way to install `rpi_rf` is through [HACS](https://hacs.xyz/).
 
 ### Manual installation
 
