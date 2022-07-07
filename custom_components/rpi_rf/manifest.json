@@ -3,7 +3,7 @@
     "name": "Raspberry Pi RF",
     "documentation": "https://github.com/markvader/ha-rpi_rf",
     "issue_tracker": "https://github.com/markvader/ha-rpi_rf/issues",
-    "requirements": ["RPi.GPIO==0.7.1a4", "rpi-rf==0.9.7"],
+    "requirements": ["RPi.GPIO==0.7.1", "rpi-rf==0.9.7"],
     "codeowners": ["@markvader"],
     "iot_class": "assumed_state",
     "version": "2022.6.0"
