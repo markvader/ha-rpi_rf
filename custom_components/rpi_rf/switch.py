@@ -1,5 +1,7 @@
 """Support for a switch using a 433MHz module via GPIO on a Raspberry Pi."""
 from __future__ import annotations
+from email.policy import default
+from enum import unique
 
 import importlib
 import logging
@@ -60,7 +62,7 @@ def setup_platform(
     discovery_info: DiscoveryInfoType | None = None,
 ) -> None:
     """Find and return switches controlled by a generic RF device via GPIO."""
-    
+
     rpi_rf = importlib.import_module("rpi_rf")
 
     gpio = config[CONF_GPIO]
@@ -89,7 +91,8 @@ def setup_platform(
 
     add_entities(devices)
 
-    hass.bus.listen_once(EVENT_HOMEASSISTANT_STOP, lambda event: rfdevice.cleanup())
+    hass.bus.listen_once(EVENT_HOMEASSISTANT_STOP,
+                         lambda event: rfdevice.cleanup())
 
 
 class RPiRFSwitch(SwitchEntity):
@@ -110,7 +113,7 @@ class RPiRFSwitch(SwitchEntity):
     ):
         """Initialize the switch."""
         self._name = name
-        self._attr_unique_id = unique_id
+        self._attr_unique_id = unique_id if unique_id else "{}_{}_{}".format(name, code_on, code_off)
         self._state = False
         self._rfdevice = rfdevice
         self._lock = lock
@@ -120,6 +123,8 @@ class RPiRFSwitch(SwitchEntity):
         self._code_on = code_on
         self._code_off = code_off
         self._rfdevice.tx_repeat = signal_repetitions
+
+        
 
     @property
     def should_poll(self):
