@@ -1,7 +1,5 @@
 """Support for a switch using a 433MHz module via GPIO on a Raspberry Pi."""
 from __future__ import annotations
-from email.policy import default
-from enum import unique
 
 import importlib
 import logging
