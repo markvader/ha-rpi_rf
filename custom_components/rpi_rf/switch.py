@@ -111,7 +111,7 @@ class RPiRFSwitch(SwitchEntity):
     ):
         """Initialize the switch."""
         self._name = name
-        self._attr_unique_id = unique_id if unique_id else "{}_{}_{}".format(name, code_on, code_off)
+        self._attr_unique_id = unique_id if unique_id else "{}_{}".format(code_on, code_off)
         self._state = False
         self._rfdevice = rfdevice
         self._lock = lock
