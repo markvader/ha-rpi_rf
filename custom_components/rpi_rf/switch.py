@@ -10,6 +10,7 @@ import voluptuous as vol
 from homeassistant.components.switch import PLATFORM_SCHEMA, SwitchEntity
 from homeassistant.const import (
     CONF_NAME,
+    CONF_UNIQUE_ID,
     CONF_PROTOCOL,
     CONF_SWITCHES,
     EVENT_HOMEASSISTANT_STOP,
@@ -40,6 +41,7 @@ SWITCH_SCHEMA = vol.Schema(
         vol.Optional(CONF_SIGNAL_REPETITIONS, default=DEFAULT_SIGNAL_REPETITIONS): cv.positive_int,
         vol.Optional(CONF_PROTOCOL, default=DEFAULT_PROTOCOL): cv.positive_int,
         vol.Optional(CONF_LENGTH, default=DEFAULT_LENGTH): cv.positive_int,
+        vol.Optional(CONF_UNIQUE_ID): cv.string,
     }
 )
 
@@ -58,7 +60,7 @@ def setup_platform(
     discovery_info: DiscoveryInfoType | None = None,
 ) -> None:
     """Find and return switches controlled by a generic RF device via GPIO."""
-    
+
     rpi_rf = importlib.import_module("rpi_rf")
 
     gpio = config[CONF_GPIO]
@@ -71,6 +73,7 @@ def setup_platform(
         devices.append(
             RPiRFSwitch(
                 properties.get(CONF_NAME, dev_name),
+                properties.get(CONF_UNIQUE_ID),
                 rfdevice,
                 rfdevice_lock,
                 properties.get(CONF_PROTOCOL),
@@ -86,7 +89,8 @@ def setup_platform(
 
     add_entities(devices)
 
-    hass.bus.listen_once(EVENT_HOMEASSISTANT_STOP, lambda event: rfdevice.cleanup())
+    hass.bus.listen_once(EVENT_HOMEASSISTANT_STOP,
+                         lambda event: rfdevice.cleanup())
 
 
 class RPiRFSwitch(SwitchEntity):
@@ -95,6 +99,7 @@ class RPiRFSwitch(SwitchEntity):
     def __init__(
         self,
         name,
+        unique_id,
         rfdevice,
         lock,
         protocol,
@@ -106,6 +111,7 @@ class RPiRFSwitch(SwitchEntity):
     ):
         """Initialize the switch."""
         self._name = name
+        self._attr_unique_id = unique_id if unique_id else "{}_{}".format(code_on, code_off)
         self._state = False
         self._rfdevice = rfdevice
         self._lock = lock
@@ -115,6 +121,8 @@ class RPiRFSwitch(SwitchEntity):
         self._code_on = code_on
         self._code_off = code_off
         self._rfdevice.tx_repeat = signal_repetitions
+
+        
 
     @property
     def should_poll(self):
