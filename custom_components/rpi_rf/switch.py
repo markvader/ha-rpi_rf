@@ -89,8 +89,7 @@ def setup_platform(
 
     add_entities(devices)
 
-    hass.bus.listen_once(EVENT_HOMEASSISTANT_STOP,
-                         lambda event: rfdevice.cleanup())
+    hass.bus.listen_once(EVENT_HOMEASSISTANT_STOP, lambda event: rfdevice.cleanup())
 
 
 class RPiRFSwitch(SwitchEntity):
@@ -121,9 +120,7 @@ class RPiRFSwitch(SwitchEntity):
         self._code_on = code_on
         self._code_off = code_off
         self._rfdevice.tx_repeat = signal_repetitions
-
-        
-
+    
     @property
     def should_poll(self):
         """No polling needed."""
