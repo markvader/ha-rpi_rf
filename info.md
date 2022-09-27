@@ -31,6 +31,7 @@ switch:
       bedroom_light:
         code_on: 1234567
         code_off: 1234568
+        unique_id: "unique device name"
       ambilight:
         pulselength: 200
         code_on: 987654
@@ -56,6 +57,7 @@ switch:
 | `pulselength`        | no       |         | integer | Pulselength.                                                                                                                  |
 | `signal_repetitions` | no       |  `10`   | integer | Number of times to repeat transmission.                                                                                       |
 | `length`             | no       |  `24`   | integer | Code Length |
+| `unique_id`          | no       |         | string  | A Unique ID to set for a switch entity e.g "my aircon switch", if not set manually one will be generated based on the code_on & code_off values. Once set, it is unadvisable to change this, see note below |
 
 
 
@@ -66,10 +68,11 @@ Thanks to the [work](https://github.com/markvader/ha-rpi_rf/pull/48) of [@oskarg
 ![additional customisation rpi-rf](https://user-images.githubusercontent.com/217953/192374175-fe598f1b-e1c0-45ab-a167-d6c199902100.png)
 
 
-**An important note on this.**
-- The unique_id for each entity is generated from the code_on & code_off values.
-- Should you change these in the future and/or add additional code(s) to a code sequence, the unique_id will be regenerated and Home Assistant will recognise a new entity.
+**An important note on unique ID's.**
+- If not set manually in the configuration file, the unique_id for each entity is generated from the code_on & code_off values.
+- Should you change the code_on or code_off values in the future and/or add additional code(s) to a code sequence, the unique_id will be regenerated and Home Assistant will recognise a new entity.
+- Should you change the unique_id value in the configuration in the future, Home Assistant will recognise a new entity.
 - It is safe to remove the old entity (It will show as "restored" in the list of entities).
-- The old entity and its customisation (icon, area etc) will be lost and you will need to reenter these customisations for the new entity.
+- The old entity and its customisation (icon, area etc) will be lost and you will need to re-enter these customisations for the new entity.
 
 - Additionally, you will be unable to have two entities with identical code_on & code_off values (not sure thats ever likely to happen as if you had more than one device in a home with the same RF codes as it would be impossible to control a single device.)
