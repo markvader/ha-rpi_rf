@@ -1,14 +1,14 @@
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.1.0
+    rev: v4.4.0
     hooks:
     -   id: trailing-whitespace
     -   id: end-of-file-fixer
     -   id: check-docstring-first
     -   id: check-yaml
     -   id: debug-statements
--   repo: https://gitlab.com/pycqa/flake8
-    rev: 4.0.1
+-   repo: https://github.com/PyCQA/flake8
+    rev: 6.0.0
     hooks:
     -   id: flake8
         args:
@@ -17,17 +17,17 @@ repos:
           - --max-complexity=18
           - --select=B,C,E,F,W,T4,B9
 -   repo: https://github.com/ambv/black
-    rev: 21.12b0
+    rev: 22.12.0
     hooks:
     - id: black
       language_version: python3
 -   repo: https://github.com/asottile/pyupgrade
-    rev: v2.31.0
+    rev: v3.3.1
     hooks:
     -   id: pyupgrade
         args: ['--py39-plus']
--   repo: https://github.com/pre-commit/mirrors-isort
-    rev: v5.10.1
+-   repo: https://github.com/PyCQA/isort
+    rev: 5.11.4
     hooks:
     -   id: isort
         args:
@@ -39,10 +39,10 @@ repos:
           - -p=homeassistant
           - --force-sort-within-sections
 -   repo: https://github.com/PyCQA/pydocstyle
-    rev: 6.1.1
+    rev: 6.3.0
     hooks:
     -   id: pydocstyle
 -   repo: https://github.com/pre-commit/mirrors-mypy
-    rev: 'v0.930'
+    rev: 'v0.991'
     hooks:
     -   id: mypy
