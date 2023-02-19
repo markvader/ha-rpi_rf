@@ -27,4 +27,9 @@ jobs:
 #       - name: Lint
 #         run: pre-commit run
       - name: Home Assistant builder
-        uses: home-assistant/builder@2022.11.0
+        uses: home-assistant/builder@master
+        with:
+          args: |
+            --test \
+            --all \
+            --target custom_components/rpi_rf
